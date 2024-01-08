@@ -7,12 +7,14 @@
   - name: Upgrade dist packages
     apt:
       upgrade: dist
+    when: ansible_distribution == "Ubuntu"
 
   - name: Install NGINX package
     apt:
       name: nginx
       state: latest
-  
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+
   - name: Start NGINX service
     systemd:
       state: started
