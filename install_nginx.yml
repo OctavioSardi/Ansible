@@ -8,7 +8,7 @@
     tags: nginx,web,webserver,package
     package:
       name:
-        - nginx
+        - "{{ nginx_package }}"
         - net-tools
       state: latest
     when: ansible_distribution in ["Ubuntu", "Debian"]
