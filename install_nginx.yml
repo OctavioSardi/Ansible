@@ -5,6 +5,7 @@
   tasks:
 
   - name: Install NGINX package
+    tags: nginx,web,webserver,package
     package:
       name:
         - nginx
@@ -13,6 +14,7 @@
     when: ansible_distribution in ["Ubuntu", "Debian"]
 
   - name: Start NGINX service
+    tags: proccess,nginx,webserver,web
     systemd:
       state: started
       name: nginx
