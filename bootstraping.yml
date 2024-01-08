@@ -1,0 +1,29 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+
+  - name: Update cache
+    tags: always
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Create new user
+    tags: always
+    user:
+      name: ansible
+      group: root
+
+
+  - name: Copy ssh key
+    tags: always
+    authorized_key:
+      user: ansible
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFsfgtTlZoCc4ng/vp9yulN/PqMpsC0wR6SDWfCCWCEn Ansible"
+
+  - name: Copy sudoers file
+    tags: always
+    copy:
+      src: sudoer_ansible
+      dest: /etc/sudoers.d/ansible

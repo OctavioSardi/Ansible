@@ -1,0 +1,31 @@
+---
+
+- hosts: webservers
+  become: true
+  tasks:
+
+  - name: Install NGINX package
+    tags: nginx,web,webserver,package
+    package:
+      name:
+        - "{{ nginx_package }}"
+        - net-tools
+      state: latest
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+
+  - name: Change default site
+    tags: nginx, web, webserver, html
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: Start NGINX service
+    tags: proccess,nginx,webserver,web
+    systemd:
+      state: started
+      name: nginx
+      enabled: yes
+    when: ansible_distribution == "Ubuntu"

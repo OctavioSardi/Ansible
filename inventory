@@ -1,3 +1,6 @@
+[workstations]
+192.168.1.115
+
 [webservers]
 192.168.122.187 nginx_package=nginx
 192.168.122.47 nginx_package=nginx
