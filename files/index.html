@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greetings, Cloud Engineer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin-top: 100px;
+			background-color: #222222
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        p {
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello there from NGINX and Ansible!</h1>
+    <p>Current time and date:</p>
+    <p id="datetime"></p>
+
+    <script>
+        function updateDateTime() {
+            var now = new Date();
+            var dateTimeString = now.toLocaleString();
+            document.getElementById('datetime').innerText = dateTimeString;
+        }
+
+        // Update time every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display date and time
+        updateDateTime();
+    </script>
+</body>
+</html>
+
