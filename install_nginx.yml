@@ -4,14 +4,11 @@
   become: true
   tasks:
 
-  - name: Upgrade dist packages
-    apt:
-      upgrade: dist
-    when: ansible_distribution == "Ubuntu"
-
   - name: Install NGINX package
-    apt:
-      name: nginx
+    package:
+      name:
+        - nginx
+        - net-tools
       state: latest
     when: ansible_distribution in ["Ubuntu", "Debian"]
 
@@ -20,3 +17,4 @@
       state: started
       name: nginx
       enabled: yes
+    when: ansible_distribution == "Ubuntu"
